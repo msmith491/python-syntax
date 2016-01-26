@@ -487,6 +487,16 @@ else
   syn sync maxlines=200
 endif
 
+" Self/Cls and Member Variables
+syn match pythonThis   /\v(self|cls)/ contained
+syn match pythonThis   /\v(self|cls)/
+syn match pythonDunder "__\w\+__"
+syn match pythonMember /\vself\.\w+(\w|\()@!/hs=s+5 contains=pythonThis
+syn match pythonMember /\vcls\.\w+(\w|\()@!/hs=s+4 contains=pythonThis
+hi link pythonThis    Keyword
+hi link pythonDunder  Define
+hi link pythonMember Type
+
 if version >= 508 || !exists("did_python_syn_inits")
   if version <= 508
     let did_python_syn_inits = 1
